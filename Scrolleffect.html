@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robust Parallax Scroll Layout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page-container">
+        <!-- Section 1 -->
+        <section class="parallax-section">
+            <div class="parallax-image" data-parallax data-parallax-speed="var(--parallax-speed-image)">
+                <img src="https://images.pexels.com/photos/3999943/pexels-photo-3999943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Mother holding a yawning baby" loading="eager" fetchpriority="high">
+            </div>
+            <div class="parallax-content" data-parallax data-parallax-speed="var(--parallax-speed-content)">
+                <h2>Section Title</h2>
+                <p>Ridiculus est, semper enim arcu lacus suspendisse diam. Dui enim blandit ultrices aliquam sapien netus aliquam adipiscing fusce. Dictumst dapibus pellentesque euismod nec odio a felis. Cursus tellus ac, fermentum ac a, lacus, aliquam, amet.</p>
+            </div>
+        </section>
+        <!-- Section 2 (Reversed) -->
+        <section class="parallax-section parallax-section--reversed">
+            <div class="parallax-image" data-parallax data-parallax-speed="var(--parallax-speed-image)">
+                <img src="https://images.pexels.com/photos/3999943/pexels-photo-3999943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Mother holding a yawning baby" loading="eager">
+            </div>
+            <div class="parallax-content" data-parallax data-parallax-speed="var(--parallax-speed-content)">
+                <h2>Another Section Title</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </section>
+        <!-- Section 3 -->
+        <section class="parallax-section">
+            <div class="parallax-image" data-parallax data-parallax-speed="var(--parallax-speed-image)">
+                <img src="https://images.pexels.com/photos/3999943/pexels-photo-3999943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Nature landscape" loading="eager">
+            </div>
+            <div class="parallax-content" data-parallax data-parallax-speed="var(--parallax-speed-content)">
+                <h2>A Third Example</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </section>
+        <!-- Section 4 (Reversed) -->
+        <section class="parallax-section parallax-section--reversed">
+            <div class="parallax-image" data-parallax data-parallax-speed="var(--parallax-speed-image)">
+                <img src="https://images.pexels.com/photos/3999943/pexels-photo-3999943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Nature landscape" loading="eager">
+            </div>
+            <div class="parallax-content" data-parallax data-parallax-speed="var(--parallax-speed-content)">
+                <h2>A Fourth Example</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </section>
+        <!-- Section 5 -->
+        <section class="parallax-section">
+            <div class="parallax-image" data-parallax data-parallax-speed="var(--parallax-speed-image)">
+                <img src="https://images.pexels.com/photos/3999943/pexels-photo-3999943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Nature landscape" loading="eager">
+            </div>
+            <div class="parallax-content" data-parallax data-parallax-speed="var(--parallax-speed-content)">
+                <h2>The Final Section</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </section>
+    </main>
+    <script src="scroll.js"></script>
+    <script>
+    // Add parallax-loaded class after images are loaded and parallax is initialized
+    (async function() {
+        if (window.parallax && typeof window.parallax.init === 'function') {
+            await window.parallax.init();
+            document.body.classList.add('parallax-loaded');
+        }
+    })();
+    </script>
+</body>
+</html>

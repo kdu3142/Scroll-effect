@@ -1,0 +1,134 @@
+/* --- Basic Setup --- */
+:root {
+    --container-width: 1024px;
+    --section-gap: 30rem;
+    --parallax-image-width: 55%;
+    --parallax-content-width: 55%;
+    --parallax-image-aspect: 10 / 12;
+    --parallax-image-scale: 120%;
+    --parallax-image-radius: 20px;
+    --parallax-content-radius: 20px;
+    --parallax-content-padding: 2.5rem;
+    --parallax-content-bg: #ffffff;
+    --parallax-content-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    --parallax-speed-image: -0.3;
+    --parallax-speed-content: 0.05;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f4f4f4;
+    color: #4a4a4a;
+    line-height: 1.6;
+}
+
+/* --- Layout Container --- */
+.page-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* --- Section Layout --- */
+.parallax-section {
+    position: relative;
+    margin: var(--section-gap) auto;
+    display: flex;
+    align-items: center;
+    min-height: 60vh;
+}
+
+/* --- Parallax Element Containers --- */
+.parallax-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--parallax-image-width);
+    height: 100%;
+    z-index: 1;
+    border-radius: var(--parallax-image-radius);
+    overflow: hidden;
+    aspect-ratio: var(--parallax-image-aspect);
+    will-change: transform;
+}
+
+.parallax-content {
+    position: relative;
+    width: var(--parallax-content-width);
+    margin-left: auto;
+    z-index: 2;
+    padding: var(--parallax-content-padding);
+    background-color: var(--parallax-content-bg);
+    border-radius: var(--parallax-content-radius);
+    box-shadow: var(--parallax-content-shadow);
+    will-change: transform;
+}
+
+/* --- Image Styling --- */
+.parallax-image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+/* --- Reversed Layout --- */
+.parallax-section--reversed .parallax-image {
+    left: auto;
+    right: 0;
+}
+
+.parallax-section--reversed .parallax-content {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* --- Typography --- */
+.parallax-content h2 {
+    color: #b93d40;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #b93d40;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 900px) {
+    :root {
+        --container-width: 98vw;
+        --section-gap: 10rem;
+        --parallax-image-width: 100%;
+        --parallax-content-width: 100%;
+    }
+    .parallax-section {
+        flex-direction: column;
+        min-height: 40vh;
+    }
+    .parallax-image,
+    .parallax-content {
+        position: static;
+        width: 100%;
+        margin: 0 0 2rem 0;
+        border-radius: 12px;
+        box-shadow: none;
+    }
+    .parallax-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --section-gap: 4rem;
+        --parallax-content-padding: 1rem;
+    }
+    .parallax-content h2 {
+        font-size: 1.3rem;
+    }
+}
