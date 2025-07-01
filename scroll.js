@@ -149,13 +149,46 @@ class ParallaxController {
         const updates = [];
         let hasVisibleElements = false;
 
+        // Group elements by section to pair image/content
+        const sectionMap = new Map();
         this.elements.forEach(item => {
-            // Always compute movement and set transform, even if not visible
-            const elementCenterY = item.initialTop + item.height / 2;
-            const distanceFromCenter = elementCenterY - viewportCenterY;
-            const movement = distanceFromCenter * item.speed;
-            updates.push({ element: item.element, movement });
-            if (item.isVisible) hasVisibleElements = true;
+            const section = item.element.closest('.parallax-section');
+            if (!section) return;
+            if (!sectionMap.has(section)) sectionMap.set(section, []);
+            sectionMap.get(section).push(item);
+        });
+
+        sectionMap.forEach(items => {
+            // Find image and content in this section
+            let image = items.find(i => i.element.classList.contains('parallax-image'));
+            let content = items.find(i => i.element.classList.contains('parallax-content'));
+
+            // Fallback: if not found, just process as before
+            if (!image || !content) {
+                items.forEach(item => {
+                    const elementCenterY = item.initialTop + item.height / 2;
+                    const distanceFromCenter = elementCenterY - viewportCenterY;
+                    const movement = distanceFromCenter * item.speed;
+                    updates.push({ element: item.element, movement });
+                    if (item.isVisible) hasVisibleElements = true;
+                });
+                return;
+            }
+
+            // Calculate image movement as before
+            const imageCenterY = image.initialTop + image.height / 2;
+            const imageDistanceFromCenter = imageCenterY - viewportCenterY;
+            const imageMovement = imageDistanceFromCenter * image.speed;
+            updates.push({ element: image.element, movement: imageMovement });
+            if (image.isVisible) hasVisibleElements = true;
+
+            // For content: align its center with the image's center (when image is centered in viewport)
+            // So, content movement = (imageCenterY - contentCenterY) + (imageDistanceFromCenter * content.speed)
+            const contentCenterY = content.initialTop + content.height / 2;
+            const centerOffset = imageCenterY - contentCenterY;
+            const contentMovement = centerOffset + imageDistanceFromCenter * content.speed;
+            updates.push({ element: content.element, movement: contentMovement });
+            if (content.isVisible) hasVisibleElements = true;
         });
 
         // Batch DOM writes

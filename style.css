@@ -1,7 +1,7 @@
 /* --- Basic Setup --- */
 :root {
     --container-width: 1024px;
-    --section-gap: 15rem;
+    --section-gap: 50rem;
     --parallax-image-width: 55%;
     --parallax-content-width: 55%;
     --parallax-image-aspect: 10 / 12;
@@ -37,7 +37,6 @@ body {
     margin: var(--section-gap) auto;
     display: flex;
     align-items: center;
-    min-height: 60vh;
 }
 
 /* --- Parallax Element Containers --- */
@@ -46,7 +45,7 @@ body {
     top: 0;
     left: 0;
     width: var(--parallax-image-width);
-    height: 400px; /* Fixed height for images */
+    height: 600px; /* Fixed height for images */
     z-index: 1;
     border-radius: var(--parallax-image-radius);
     overflow: hidden;
@@ -108,7 +107,6 @@ body {
     }
     .parallax-section {
         flex-direction: column;
-        min-height: 40vh;
     }
     .parallax-image,
     .parallax-content {
