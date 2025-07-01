@@ -1,7 +1,7 @@
 /* --- Basic Setup --- */
 :root {
     --container-width: 1024px;
-    --section-gap: 50rem;
+    --section-gap: 800px;
     --parallax-image-width: 55%;
     --parallax-content-width: 55%;
     --parallax-image-aspect: 10 / 12;
@@ -28,13 +28,13 @@ body {
 .page-container {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem 1rem 1rem; /* Reduced top/bottom padding */
 }
 
 /* --- Section Layout --- */
 .parallax-section {
     position: relative;
-    margin: var(--section-gap) auto;
+    margin: var(--section-gap) auto; /* Use section gap variable */
     display: flex;
     align-items: center;
 }
@@ -101,12 +101,13 @@ body {
 @media (max-width: 900px) {
     :root {
         --container-width: 98vw;
-        --section-gap: 10rem;
+        --section-gap: 6rem; /* Reduce gap for mobile/tablet */
         --parallax-image-width: 100%;
         --parallax-content-width: 100%;
     }
     .parallax-section {
         flex-direction: column;
+        margin: var(--section-gap) 0; /* Use section gap variable */
     }
     .parallax-image,
     .parallax-content {
@@ -126,7 +127,7 @@ body {
 
 @media (max-width: 600px) {
     :root {
-        --section-gap: 4rem;
+        --section-gap: 2rem;
         --parallax-content-padding: 1rem;
     }
     .parallax-content h2 {
