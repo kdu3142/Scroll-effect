@@ -1,20 +1,29 @@
+/**
+ * ParallaxController Class
+ * Handles smooth parallax scrolling effects for images and content
+ * @author KDU3142
+ * @version 1.0.0
+ */
 class ParallaxController {
+    /**
+     * @param {string} sectionSelector - CSS selector for parallax sections
+     */
     constructor(sectionSelector = '.parallax-section') {
+        // DOM Elements
         this.sectionSelector = sectionSelector;
-        this.sections = Array.from(document.querySelectorAll(sectionSelector));
+        this.sections = [];
         this.elements = [];
-        this.ticking = false;
-        this.resizeTimeout = null;
+        
+        // Animation State
         this.rafId = null;
-        this.observer = null;
         this.isScrolling = false;
+        
+        // Performance Management
+        this.observer = null;
+        this.resizeTimeout = null;
         this.scrollTimeout = null;
-        this.state = {
-            isInitialized: false,
-            isAnimating: false,
-            viewportHeight: window.innerHeight
-        };
-
+        
+        // Bind Methods
         this.handleResize = this.handleResize.bind(this);
         this.updateParallax = this.updateParallax.bind(this);
         this.handleIntersection = this.handleIntersection.bind(this);
@@ -48,9 +57,6 @@ class ParallaxController {
      * Gathers data about each parallax element AFTER images are loaded.
      */
     setupElements() {
-        if (!this.state.isInitialized) {
-            this.state.isInitialized = true; // Allow first setup
-        }
         try {
             this.elements = [];
             const parallaxItems = document.querySelectorAll('[data-parallax]');
@@ -141,10 +147,10 @@ class ParallaxController {
     }
 
     /**
-     * The core animation function.
+     * Updates parallax positions based on scroll position
+     * (Restored original logic for correct parallax effect)
      */
     updateParallax() {
-        const startTime = performance.now();
         const viewportCenterY = window.scrollY + window.innerHeight / 2;
         const updates = [];
         let hasVisibleElements = false;
@@ -201,11 +207,6 @@ class ParallaxController {
         } else {
             this.rafId = null;
         }
-
-        const endTime = performance.now();
-        if (endTime - startTime > 16) {
-            console.warn(`Parallax frame took ${endTime - startTime}ms`);
-        }
     }
 
     /**
@@ -237,9 +238,6 @@ class ParallaxController {
     }
 }
 
-// Instantiate and initialize the controller
+// Initialize parallax controller
 const parallax = new ParallaxController();
-window.parallax = parallax; // Expose to window for inline script
-
-// Remove the immediate call to parallax.init(); 
-// It will be called from the inline script in the HTML after images are loaded
+window.parallax = parallax;

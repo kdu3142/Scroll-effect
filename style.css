@@ -1,20 +1,38 @@
-/* --- Basic Setup --- */
+/**
+ * Parallax Scroll Effect - Core Styles
+ * Author: KDU3142
+ * Version: 1.0.0
+ */
+
+/* --------------------
+   Configuration
+-------------------- */
 :root {
+    /* Layout */
     --container-width: 1024px;
     --section-gap: 800px;
+    
+    /* Parallax Elements */
     --parallax-image-width: 55%;
     --parallax-content-width: 55%;
-    --parallax-image-aspect: 10 / 12;
-    --parallax-image-scale: 120%;
+    --parallax-image-height: 600px;
+    --parallax-image-mobile-height: 250px;
+    
+    /* Visual Properties */
     --parallax-image-radius: 20px;
     --parallax-content-radius: 20px;
     --parallax-content-padding: 2.5rem;
     --parallax-content-bg: #ffffff;
     --parallax-content-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    
+    /* Animation Speed */
     --parallax-speed-image: -0.3;
-    --parallax-speed-content: 0.05;
+    --parallax-speed-content: 0.5;
 }
 
+/* --------------------
+   Base Styles
+-------------------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -24,32 +42,34 @@ body {
     line-height: 1.6;
 }
 
-/* --- Layout Container --- */
+/* --------------------
+   Core Layout
+-------------------- */
 .page-container {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 1rem 1rem 1rem 1rem; /* Reduced top/bottom padding */
+    padding: 1rem;
 }
 
-/* --- Section Layout --- */
 .parallax-section {
     position: relative;
-    margin: var(--section-gap) auto; /* Use section gap variable */
+    margin: var(--section-gap) auto;
     display: flex;
     align-items: center;
 }
 
-/* --- Parallax Element Containers --- */
+/* --------------------
+   Parallax Elements
+-------------------- */
 .parallax-image {
     position: absolute;
     top: 0;
     left: 0;
     width: var(--parallax-image-width);
-    height: 600px; /* Fixed height for images */
+    height: var(--parallax-image-height);
     z-index: 1;
     border-radius: var(--parallax-image-radius);
     overflow: hidden;
-    aspect-ratio: var(--parallax-image-aspect);
     will-change: transform;
 }
 
@@ -65,7 +85,9 @@ body {
     will-change: transform;
 }
 
-/* --- Image Styling --- */
+/* --------------------
+   Image Styling
+-------------------- */
 .parallax-image img {
     position: absolute;
     top: 50%;
@@ -76,7 +98,9 @@ body {
     transform: translate(-50%, -50%);
 }
 
-/* --- Reversed Layout --- */
+/* --------------------
+   Reversed Layout
+-------------------- */
 .parallax-section--reversed .parallax-image {
     left: auto;
     right: 0;
@@ -87,7 +111,9 @@ body {
     margin-right: auto;
 }
 
-/* --- Typography --- */
+/* --------------------
+   Typography
+-------------------- */
 .parallax-content h2 {
     color: #b93d40;
     font-size: 2rem;
@@ -97,17 +123,20 @@ body {
     padding-bottom: 0.5rem;
 }
 
-/* --- Responsive Design --- */
+/* --------------------
+   Responsive Design
+-------------------- */
 @media (max-width: 900px) {
     :root {
         --container-width: 98vw;
-        --section-gap: 6rem; /* Reduce gap for mobile/tablet */
+        --section-gap: 6rem;
         --parallax-image-width: 100%;
         --parallax-content-width: 100%;
     }
+    
     .parallax-section {
         flex-direction: column;
-        margin: var(--section-gap) 0; /* Use section gap variable */
+        margin: var(--section-gap) 0;
     }
     .parallax-image,
     .parallax-content {
@@ -118,7 +147,7 @@ body {
         box-shadow: none;
     }
     .parallax-image {
-        height: 250px; /* Smaller fixed height for mobile/tablet */
+        height: var(--parallax-image-mobile-height);
     }
     .parallax-content {
         padding: 1.5rem;
